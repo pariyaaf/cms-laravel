@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Admin\PanelController;
+use App\Http\Controllers\Admin\ArticleController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -21,5 +22,11 @@ Route::get('/', function () {
 
 Route::group(['prefix'=>'admin', 'as'=>'admin.'], function() {
     Route::resource('panel', PanelController::class);
+    Route::resource('articles', ArticleController::class);
 
 });
+
+// Route::namespace('Admin')->prefix('admin')->group(function() {
+//     // Route::resource('panel', PanelController::class);
+//     $this->get('/panel'.'PanelController@index');
+// });
