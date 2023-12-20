@@ -13,6 +13,7 @@
 
             <form class="form-horizontal"action="{{route('admin.articles.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
+                @include('Admin.section.errors')
                 <div class="form-group">
                     <div class="col-sm-12">
                         <label for="title"  class="control-label" >عنوان مقاله</label>
@@ -24,8 +25,8 @@
                 <div class="form-group">
                     <div class="col-sm-12">
                         <label for="description"  class="control-label" >توضیحات مقاله</label>
-                        <input type="text" class="form-control" name="description" id="description" placeholder="توضیحات  مقاله را وارد کنید"
-                        value="{{old('description')}}">
+                        <textarea row="5" class="form-control" name="description" id="description" placeholder="توضیحات  مقاله را وارد کنید"
+                       > {{old('description')}}</textarea>
                     <div class="col-sm-12">
                 </div>
 
@@ -38,9 +39,9 @@
                 </div>
 
                 <div class="form-group">
-                <div class="col-sm-6">
-                        <label for="image"  class="control-label" >تصویر اصلی</label>
-                        <input type="file" class="form-control" name="image" id="image" placeholder="تصویر را انتخاب کنید"
+                    <div class="col-sm-6">
+                        <label for="images"  class="control-label" >تصویر اصلی</label>
+                        <input type="file" class="form-control" name="images" id="images" placeholder="تصویر را انتخاب کنید"
                         value="{{old('image')}}">
                     </div>
                     <div class="col-sm-6">
