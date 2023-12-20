@@ -30,7 +30,7 @@
                         @method('delete')
 
                         <div class="btn-group btn-group-xs">
-                            <a class="btn btn-primary" href="{{route('admin.articles.edit' ,$article->id)}}"></a>
+                            <a class="btn btn-primary" href="{{route('admin.articles.edit' ,$article->id)}}">ویرایش</a>
                             <button type="submit" class="btn btn-danger">حذف</button>
                         </div>
                         </form>
