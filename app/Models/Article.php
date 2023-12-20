@@ -5,12 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+// use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 class Article extends Model
 {
     use Sluggable;
 
     use HasFactory;
+
+    protected $guarded = [];
+
+    protected $casts = [
+        'images' => 'array'
+    ];
 
     public function sluggable(): array
     {
@@ -26,4 +34,9 @@ class Article extends Model
         return "/article/$this->slug";
 
     }
+
+    // relate
+    // public function article () {
+    //     return $this->hasMany(User::class);
+    // }
 }
