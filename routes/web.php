@@ -24,6 +24,9 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.'], function() {
     Route::resource('panel', PanelController::class);
     Route::resource('articles', ArticleController::class);
 
+    //for ckeditor
+    Route::post('panel/upload-image',[PanelController::class, 'uploadImage']);
+
 });
 
 // Route::namespace('Admin')->prefix('admin')->group(function() {
