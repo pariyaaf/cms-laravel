@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PanelController extends Controller
 {
@@ -61,5 +62,30 @@ class PanelController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function uploadImage() {
+        $this->validate(request() , [
+            'upload' => 'required|mimes:jpeg,png,bmp',
+        ]);
+
+        $year = Carbon::new()->year;
+        $imagePath = "/upload/images/{$year}/";
+
+        
+            $file = request()->file('upload');
+            $fileName = $file->getClientOrginalName();
+
+            if(file_exists(public_path($imagePath). $fileName)) {
+                $fileName = Carbon::now()->timestamp.$fileName;
+            }
+  
+
+            $file->move(public_path($imagePath), $fileName);
+            $url = $imagePath . $filename;
+
+            return "<script>window.parent.CKEDITOR.tools.callFunction(1 , '{$url}' , '')</script>";
+
+
     }
 }
