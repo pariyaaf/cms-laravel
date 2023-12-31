@@ -41,5 +41,8 @@
                 </tbody>
             </table>
         </div>
+        <div style="text-align:center">
+            {!!$articles->render()!!}
+        </div>
     </div>
 @endsection
