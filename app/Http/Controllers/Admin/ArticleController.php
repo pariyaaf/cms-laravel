@@ -37,27 +37,27 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request)
     {
         try{
-                $images = $request->file('images');
-                $imagesUrl = $this->uploadImage($images);
+            $images = $request->file('images');
+            $imagesUrl = $this->uploadImage($images);
 
-                // dd($request->all(), array_merge($request->all() , [ 'images' => $imagesUrl]));
-                
-                auth()->loginUsingId(6);
-                $request->images = $imagesUrl;
-                auth()->user()->article()->create(
+            // dd($request->all(), array_merge($request->all() , [ 'images' => $imagesUrl]));
+            
+            auth()->loginUsingId(1);
+            $request->images = $imagesUrl;
+            auth()->user()->course()->create(
 
-                    array_merge($request->all() , [ 'images' => $imagesUrl])
-                                );
+                array_merge($request->all() , [ 'images' => $imagesUrl])
+                            );
 
-                return back();//  زمانی که به صورت پست باشه میشه ازش استفاده کرد.
-
-                // return redirect()->route('Admin.articles.create');
-
-        } catch(\Exception $e){
-            dd($e);
             return back();//  زمانی که به صورت پست باشه میشه ازش استفاده کرد.
-            // return redirect(route('articles.index'));
-        }
+
+            // return redirect()->route('Admin.articles.create');
+
+    } catch(\Exception $e){
+        dd($e);
+        return back();//  زمانی که به صورت پست باشه میشه ازش استفاده کرد.
+        // return redirect(route('articles.index'));
+    }
     }
 
     /**
@@ -103,7 +103,7 @@ class ArticleController extends Controller
             $article->update($input);
             $articles = Article::latest()->paginate(20);
             return view('Admin.articles.index',compact('articles'));
-} catch(\Exception $e) {
+        } catch(\Exception $e) {
             return back();
         }
     }

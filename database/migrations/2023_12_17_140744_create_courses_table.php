@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('slug');
             $table->text('description');
             $table->text('body');
-            $table->string('imageUrl');
+            $table->text('images');
             $table->string('tags');
             $table->integer('viewCount')->default(0);
             $table->integer('commentCount')->default(0);
