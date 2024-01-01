@@ -5,7 +5,11 @@
         <div class="page-header head-section">
             <h2>
                 مقالات
+                <div class="btn-group">
                 <a href="{{route('admin.courses.create')}}" class="btn btn-primary">ایجاد دوره جدید</a>
+                <a href="{{route('admin.episode.index')}}" class="btn btn-danger">  بخش اپیزود ها</a>
+
+                </div>
             </h2>
         </div>
         <div class="table-responsive">
@@ -16,6 +20,7 @@
                     <th>تعداد نظرات</th>
                     <th>مقدار بازدید</th>
                     <th>نوع دوره</th>
+                    <th>زمان دوره</th>
 
                     <th>تنظیمات</th>
                 </tr>
@@ -27,6 +32,8 @@
                     <td>{{$course->commentCount}}</td>
                     <td>{{$course->viewCount}}</td>
                     <td>{{$course->type}}</td>
+                    <td>{{$course->time}}</td>
+
                     <td>
                         @if($course->type =='free')
                             ویژه
