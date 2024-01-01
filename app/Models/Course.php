@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Support\Str;
+use App\Models\episode;
 
 class Course extends Model
 {
@@ -43,4 +44,8 @@ class Course extends Model
     }
 
 
+    public function episodes()
+    {
+        return $this->hasMany(episode::class);
+    }
 }
