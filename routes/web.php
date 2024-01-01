@@ -2,6 +2,8 @@
 use App\Http\Controllers\Admin\PanelController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\EpisodeController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +26,8 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.'], function() {
     Route::resource('panel', PanelController::class);
     Route::resource('articles', ArticleController::class);
     Route::resource('courses', CourseController::class);
+    Route::resource('episode', EpisodeController::class);
+
 
     //for ckeditor
     Route::post('panel/upload-image',[PanelController::class, 'uploadImage']);
