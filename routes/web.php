@@ -3,6 +3,7 @@ use App\Http\Controllers\Admin\PanelController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\EpisodeController;
+use App\Http\Controllers\Admin\TestController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,9 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.'], function() {
     Route::resource('courses', CourseController::class);
     Route::resource('episode', EpisodeController::class);
 
+
+    Route::get('test', [TestController::class, 'index']);
+    Route::get('test/single/{post}', [TestController::class, 'single']);
 
     //for ckeditor
     Route::post('panel/upload-image',[PanelController::class, 'uploadImage']);
