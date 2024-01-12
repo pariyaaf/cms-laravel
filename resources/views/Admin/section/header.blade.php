@@ -37,15 +37,13 @@
                 <li><a href="/admin/courses">دوره ها</a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li><a href="">کاربران <span class="badge">0</span></a></li>
+                <li><a href="/admin/users">کاربران <span class="badge">0</span></a></li>
                 <li><a href="">پرداختی های موفق <span class="badge">0</span></a></li>
                 <li><a href="">پرداختی های ناموفق <span class="badge">0</span></a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                @can('manage_users') 
                     <li><a href="">همه نظرات</a></li>
                     <li><a href="">نظرات تایید نشده <span class="badge">0</span></a></li>
-                @endcan
                 {{--<li><a href="">Another nav item</a></li>--}}
             </ul>
         </div>
