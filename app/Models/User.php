@@ -67,15 +67,20 @@ class User extends Authenticatable
         if(is_string($role)) {
             return $this->roles->contains('name' , $role);
         }
-//
-//        foreach ($role as $r) {
-//            if($this->hasRole($r->name)) {
-//                return true;
-//            }
-//        }
-//        return false;
+
 
         return !! $role->intersect($this->roles)->count();
+    }
+
+    public function isAdmin(){
+        // $level = $this->level;
+        
+        // if($level == 'admin') {
+        //     return true;
+        // }
+        
+        // return false;
+        return $this->level == 'admin' ? true : false;
     }
     
 }
