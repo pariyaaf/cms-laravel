@@ -13,7 +13,7 @@ class PanelController extends Controller
      */
     public function index()
     {
-        auth()->loginUsingId(1);
+        auth()->loginUsingId(7);
         return view('Admin.panel');
     }
 
