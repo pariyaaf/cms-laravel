@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\Payment;
+use Illuminate\Support\Facades\DB;
+use Morilog\Jalali\Jalalian; // Make sure to include the appropriate library for Jalali date conversion
 
 class PanelController extends Controller
 {
@@ -16,8 +19,16 @@ class PanelController extends Controller
         // dd(Auth()->user());
         // auth()->loginUsingId(7);
         // Auth()->logout(7);
+        $month = 12;
+        $paymentsSuccess = Payment::spannignPayment($month, 1);
+        $paymentsFaill = Payment::spannignPayment($month, 0);
 
-        return view('Admin.panel');
+        // dd($paymentsSuccess);
+        $values['success'] = $this->checkCount($paymentsSuccess->pluck('published'), $month);
+        $values['unsuccess'] = $this->checkCount($paymentsFaill->pluck('published'), $month);
+
+        $labels = $this->getLastMonth($month);
+        return view('Admin.panel', compact('labels', 'values'));
     }
 
     /**
@@ -91,5 +102,19 @@ class PanelController extends Controller
             return "<script>window.parent.CKEDITOR.tools.callFunction(1 , '{$url}' , '')</script>";
 
 
+    }
+
+    private function getLastMonth($month) {
+        for($i=0; $i < $month ; $i++) {
+            $labels[] = jdate(Carbon::now()->subMonths($i))->format('%B');
+        }
+        return array_reverse($labels);
+    }
+    
+    private function checkCount($count, $month) {
+        for($i=0; $i < $month ; $i++) {
+            $new[$i] = empty($count[$i]) ? 0 : $count[$i];
+        }
+        return array_reverse($new);
     }
 }
