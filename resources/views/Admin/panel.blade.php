@@ -4,7 +4,9 @@
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h1 class="page-header">Dashboard</h1>
 
-        <payment></payment>
+        <payment :values="{{ json_encode($values)}}" :labels="{{ json_encode($labels)}}">
+
+        </payment>
 
 
         <h2 class="sub-header">Section title</h2>
