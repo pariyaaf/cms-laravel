@@ -1,36 +1,35 @@
 <template>
-    <canvas style="width:100%" height="400" id="payment"></canvas>
+    <div>
+        <canvas style="width:100%" height="400" id="payment"></canvas>
+
+    </div>
 </template>
 
 <script>
     import Chart from 'chart.js';
 
     export default {
+    props: ['labels', 'values'],
         mounted() {
-            var ctx = document.getElementById("payment").getContext("2d");
+            var ctx = this.$refs.payment.getContext("2d");
             var myChart = new Chart(ctx, {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
                     datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
+                        label: 'پرداخت های موفق',
+                        data: $this.values['success'],
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255,99,132,1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
+                            'rgba(0, 0, 255, 0.5)',
+                        borderColor:  'rgba(255,99,132,1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'پرداخت های نا موفق',
+                        data: $this.values['unsuccess'],
+                        backgroundColor: [
+                            'rgba(255, 0, 0, 0.2)',
+                        borderColor:  'rgba(255,99,132,1)',
                         borderWidth: 1
                     }]
                 },
