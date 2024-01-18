@@ -7,8 +7,13 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 use Carbon\Carbon;
 use App\Events\UserActivation\UserActivation;
+use Laravel\Socialite\Facades\Socialite;
+
 
 class LoginController extends Controller
 {
@@ -92,5 +97,40 @@ class LoginController extends Controller
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
+    }
+    
+    //google
+
+    //ما رو میبره به گوگل
+    public function redirectToProvider() {
+        //get information from drvier google i add in services.php  and redirect to google
+        return Socialite::driver('google')->redirect();        
+    }
+
+    // جواب گوگل رو برای ما بر می گردونه
+    public function handleProviderCallback(){
+        //add stateless
+        $social_user = Socialite::driver('google')->stateless()->user();
+        $user = User::whereEmail($social_user->getEmail())->first();
+
+        if(!$user) {
+            $user  = User::create([
+                'name'=>  $social_user->getName(),
+                'email'=>  $social_user->getEmail(),
+                'password' => Hash::make($social_user->getId()),
+                // 'active'=>
+                // 'level' defalut
+                // 'created-at'
+                // 'email_verified_at'
+            ]);
+        }
+
+        if($user->active == 0) {
+            $user->update([
+                'active' => 1
+            ]);
+        }
+        auth()->loginUsingId($user->id);
+        return redirect('/');
     }
 }
