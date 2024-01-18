@@ -15,17 +15,17 @@ class UserAController extends Controller
         $activationCode = ActivationCode::whereCode($token)->first();
 
         if(!$activationCode) {
-            dd('not found!');
+            Alert::error('خطا در اعتبارسنجی', 'توکن نامعتبر است');
             return redirect('/login');
         }
 
         if($activationCode->expire < Carbon::now()) {
-            dd('expire!');
+            Alert::error('خطا در اعتبارسنجی', 'توکن منقضی شده است.');
             return redirect('/login');
         }
 
         if($activationCode->used == 1) {
-            dd('used!');
+            Alert::error('خطا در اعتبارسنجی', 'توکن قبلا استفاده شده است');
             return redirect('/login');
         }
 

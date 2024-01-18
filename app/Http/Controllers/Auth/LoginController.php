@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
+use RealRashid\SweetAlert\Facades\Alert;
 use Carbon\Carbon;
 use App\Events\UserActivation\UserActivation;
 use Laravel\Socialite\Facades\Socialite;

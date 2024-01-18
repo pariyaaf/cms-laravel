@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Events\UserActivation\UserActivation;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterController extends Controller
 {
