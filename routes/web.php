@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\LevelManageController;
+use App\Http\Controllers\UserAController;
 
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -21,6 +22,9 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ConfirmPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
 
+use App\Models\User;
+use App\Events\UserActivation\UserActivation;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,9 +37,14 @@ use App\Http\Controllers\Auth\VerificationController;
 */
 
 Route::get('/', function () {
+    $user = User::find(1);
+    // return event(new UserActivation($user));
+    return ('done');
     return view('welcome');
+
 });
 
+Route::get('user/active/email/{token}',[UserAController::class, 'activation'])->name('activation.account');
 
 Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware' => ['auth:web', 'CheckAdmin']], function() {
     Route::resource('panel', PanelController::class);
