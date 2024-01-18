@@ -21,7 +21,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ConfirmPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
-
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Events\UserActivation\UserActivation;
 
@@ -37,8 +38,9 @@ use App\Events\UserActivation\UserActivation;
 */
 
 Route::get('/', function () {
-    $user = User::find(1);
+    // $user = User::find(1);
     // return event(new UserActivation($user));
+    dd(Auth::user());
     return ('done');
     return view('welcome');
 
@@ -96,6 +98,10 @@ Route::group(['namespace' => "App\Http\Controllers\Auth"], function () {
     Route::get('email/resend',  [VerificationController::class, 'resend'])->name('verification.resend');
     // Home Route
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    //login and register with google
+        //یکی برای لاگین یکی هم برای کال بک
+    Route::get('login/google',[LoginController::class,'redirectToProvider']);
+    Route::get('login/google/callback', [LoginController::class,'handleProviderCallback']);
 });
 // Auth::routes();
 
