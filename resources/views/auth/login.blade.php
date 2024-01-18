@@ -65,6 +65,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
+                            <a href="{{ url('login/google') }}" class="btn btn-danger">login With Google</a>
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
