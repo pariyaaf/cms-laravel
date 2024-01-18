@@ -20,5 +20,7 @@
     </div>
 
     @include('Admin.section.footer')
+    @include('sweetalert::alert')
+
 </body>
 </html>
