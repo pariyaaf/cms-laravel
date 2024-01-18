@@ -25,6 +25,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Events\UserActivation\UserActivation;
+use RealRashid\SweetAlert\Facades\Alert;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,13 @@ Route::get('/', function () {
     // return event(new UserActivation($user));
     dd(Auth::user());
     return ('done');
+    return view('welcome');
+});
+
+
+Route::get('/alert', function () {
+    alert()->error('Oops...', 'Something went wrong!')->footer('<a href="#">Why do I have this issue?</a>');
+    // return ('done');
     return view('welcome');
 
 });
