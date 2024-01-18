@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Article;
 use App\Models\Course;
+use App\Models\ActivationCode;
 
 
 class User extends Authenticatable
@@ -82,5 +83,10 @@ class User extends Authenticatable
         // return false;
         return $this->level == 'admin' ? true : false;
     }
+
+    public function activationCode() {
+        return $this->hasMany(activationCode::class);
+    }
+
     
 }
