@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Events\UserActivation\UserActivation;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,9 +42,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 Route::get('/', function () {
     // $user = User::find(1);
     // return event(new UserActivation($user));
-    dd(Auth::user());
-    return ('done');
-    return view('welcome');
+    // auth()->loginUsingId(7);
+    alert()->error('Oops...', 'Something went wrong!')->footer('<a href="#">Why do I have this issue?</a>');
+    // return view('Admin.panel', compact('labels', 'values'));
+    // dd(Auth::user());
+    // return ('done');
+    return view('home');
 });
 
 
@@ -84,7 +88,7 @@ Route::group(['namespace' => "App\Http\Controllers\Auth"], function () {
     // Authentication Routes...
     Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('login', [LoginController::class,'login']);
-    Route::post('logout',  [LoginController::class,'logout'])->name('logout');
+    Route::get('logout',  [LoginController::class,'logout'])->name('logout');
     
     // Registration Routes...
     Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
@@ -113,3 +117,30 @@ Route::group(['namespace' => "App\Http\Controllers\Auth"], function () {
 });
 // Auth::routes();
 
+
+//  Route::post('/upload',[TestController::class,'testUploadImage']);
+
+
+// Route::get('/getData' , function(){
+//     $validator = \Validator::make(request()->all(),[
+//         'name' => 'required',
+//         'pic' => 'required'
+//     ]);
+
+//     if($validator->fails()) {
+//         return $validator->errors()->all();
+//     }
+//     $file = request()->file('pic');
+//     $year = Carbon::now()->year;
+//     $imagePath = "/upload/images/{$year}/";
+//     $filename = $file->getClientOriginalName();
+
+//     $file = $file->move(public_path($imagePath) , $filename);
+
+//     return $imagePath . $filename;
+// });
+
+Route::post('/data', function() {
+    
+
+});
