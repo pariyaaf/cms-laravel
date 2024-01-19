@@ -137,7 +137,6 @@
                 </div>
             </div>
         </div>
-        <!-- <script src="/js/sweetalert.min.js"></script> -->
         @include('sweetalert::alert')
     </body>
 </html>
