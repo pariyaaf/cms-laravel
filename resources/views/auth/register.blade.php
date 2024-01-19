@@ -64,7 +64,9 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                             <a href="{{ url('login/google') }}" class="btn btn-danger">Register With Google</a>
-                                <button type="submit" class="btn btn-primary">
+                                <!-- <button type="submit" class="btn btn-primary"> -->
+                                <button type="submit" class="btn btn-primary g-recaptcha" data-sitekey="6LdwuFUpAAAAANxxdldK-80kZIxSjMaENMKRctUL" 
+                                data-callback='onSubmit'>
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -76,3 +78,14 @@
     </div>
 </div>
 @endsection
+
+
+@push('scripts')
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+   function onSubmit(token) {
+    console.log('here');  // Fix the typo here
+     document.getElementById("demo-form").submit();
+   }
+</script>
+@endpush

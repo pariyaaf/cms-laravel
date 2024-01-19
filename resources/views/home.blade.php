@@ -20,4 +20,12 @@
         </div>
     </div>
 </div>
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+   function onSubmit(token) {
+    console.log('here');  // Fix the typo here
+     document.getElementById("demo-form").submit();
+   }
+</script>
 @endsection

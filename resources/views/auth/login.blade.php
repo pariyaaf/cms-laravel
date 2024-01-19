@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login') }}" id="demo-form">
                         @csrf
 
                         <div class="row mb-3">
@@ -66,7 +66,8 @@
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                             <a href="{{ url('login/google') }}" class="btn btn-danger">login With Google</a>
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary g-recaptcha" data-sitekey="6LdwuFUpAAAAANxxdldK-80kZIxSjMaENMKRctUL" 
+                                data-callback='onSubmit'>
                                     {{ __('Login') }}
                                 </button>
 
@@ -84,3 +85,14 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+   function onSubmit(token) {
+    console.log('here');  // Fix the typo here
+     document.getElementById("demo-form").submit();
+   }
+</script>
+@endpush
+                  
