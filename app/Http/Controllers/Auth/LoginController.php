@@ -48,6 +48,13 @@ class LoginController extends Controller
     }
 
 
+    
+    // if($validator->fails()) {
+    //     return $validator->errors()->all();
+    // }
+    // else {
+    //     return request()->all();
+    // }
 
     public function login(Request $request)
     {
@@ -132,5 +139,14 @@ class LoginController extends Controller
         }
         auth()->loginUsingId($user->id);
         return redirect('/');
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'g-recaptcha-response' => 'required|recaptcha'
+        ]);
     }
 }
