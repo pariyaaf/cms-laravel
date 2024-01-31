@@ -12,6 +12,7 @@ use App\Events\UserActivation\UserActivation;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -74,6 +75,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'api_token' =>  Str::random(60)
+
         ]);
     }
 
