@@ -43,11 +43,11 @@ Route::get('/', function () {
     // $user = User::find(1);
     // return event(new UserActivation($user));
     // auth()->loginUsingId(7);
-    alert()->error('Oops...', 'Something went wrong!')->footer('<a href="#">Why do I have this issue?</a>');
+    // alert()->error('Oops...', 'Something went wrong!')->footer('<a href="#">Why do I have this issue?</a>');
     // return view('Admin.panel', compact('labels', 'values'));
     // dd(Auth::user());
     // return ('done');
-    return view('home');
+    return view('welcome');
 });
 
 
@@ -121,26 +121,23 @@ Route::group(['namespace' => "App\Http\Controllers\Auth"], function () {
 //  Route::post('/upload',[TestController::class,'testUploadImage']);
 
 
-// Route::get('/getData' , function(){
-//     $validator = \Validator::make(request()->all(),[
-//         'name' => 'required',
-//         'pic' => 'required'
-//     ]);
+Route::get('/getData' , function(){
+    $validator = \Validator::make(request()->all(),[
+        'name' => 'required',
+        'pic' => 'required'//pic dir
+    ]);
 
-//     if($validator->fails()) {
-//         return $validator->errors()->all();
-//     }
-//     $file = request()->file('pic');
-//     $year = Carbon::now()->year;
-//     $imagePath = "/upload/images/{$year}/";
-//     $filename = $file->getClientOriginalName();
+    if($validator->fails()) {
+        return $validator->errors()->all();
+    }
 
-//     $file = $file->move(public_path($imagePath) , $filename);
+    $file = request()->file('pic');
+    $year = Carbon::now()->year;
+    $imagePath = "/upload/images/{$year}/";
+    $filename = $file->getClientOriginalName();
 
-//     return $imagePath . $filename;
-// });
+    $file = $file->move(public_path($imagePath) , $filename);
 
-Route::post('/data', function() {
-    
-
+    return $imagePath . $filename;
 });
+
