@@ -7,6 +7,8 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use App\Models\Permission;
 use App\Models\User;
+use Laravel\Passport\Passport;
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Passport::loadKeysFrom(__DIR__.'/../secrets/oauth');
+
         Gate::define('update-post', function (User $user, Article $course) {
             return $user === $course->user_id;
         });
