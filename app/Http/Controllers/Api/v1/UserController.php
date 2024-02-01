@@ -24,8 +24,13 @@ class UserController extends Controller
             return response(['data'=> 'Unaunthenticate', 'status'=>401], 401);
         };
 
-        return response(['data'=> User::whereEmail($request->input('email'))->first()->api_token, 'status'=>200], 200);
+        //with token
+        // return response(['data'=> User::whereEmail($request->input('email'))->first()->api_token, 'status'=>200], 200);
 
+        //with passport
+        $user = User::whereEmail($request->input('email'))->first();
+        $token = $user->createToken('Roocket App Android')->accessToken;
 
+        return response(['data' => $token , 'status' => 200]);
     }
 }
