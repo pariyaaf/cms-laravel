@@ -1,0 +1,53 @@
+    public function LoginWithRoocket()
+    {
+        //create query 
+        $query = http_build_query([
+           'client_id' => '9b3ab42f-6ef5-4eac-a888-d173c6caaf27',
+            'redirect_uri' => "http://localhost:8001/auth/callback",// client site set in main site as client
+            'response_type' => 'code',// what kind of response i need
+            'scope' => ''
+        ]);
+
+        return redirect("http://localhost:8000/oauth/authorize?". $query);
+    }
+
+    public function LoginCallback(Request $request)
+    {
+
+        $response = Http::asForm()->post('http://localhost:8000/oauth/token', [
+                'grant_type' => 'authorization_code',
+                'client_id' => '9b3ab42f-6ef5-4eac-a888-d173c6caaf27',
+                'client_secret' => 'SutlvlnwetfIcjuk4zFoS50ER7ayFGDUch9wTjgX',
+                'redirect_uri' => 'http://localhost:8001/auth/callback',
+                'code' => $request->code,
+        ]);
+
+        // return $response->json();
+
+        $accessToken = json_decode((string) $response->getBody(), true)['access_token'];
+        $response =  Http::get('http://localhost:8000/api/v1/user' , [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer '. $accessToken
+            ],
+        ]);
+        dd($response);
+        $user = User::whereEmail($response->getEmail())->first();
+
+        if(!$user) {
+            $user  = User::create([
+                'name'=>  $response->name,
+                'email'=>  $response->email,
+                'password' => Hash::make($response->email),
+            ]);
+        }
+        return $response;
+    }
+
+
+
+    /// web
+    Route::get('login/roocket', [LoginController::class,'LoginWithRoocket']);
+
+// Route::get('/callback' , 'Auth\LoginController@LoginCallback');
+Route::get('/auth/callback', [LoginController::class,'LoginCallback']);
