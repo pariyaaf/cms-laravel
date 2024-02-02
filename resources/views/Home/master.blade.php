@@ -13,8 +13,7 @@
     <title>وبسایت راکت</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="/css/home.css" rel="stylesheet">// برای استایل های جدید 
-</head>
+    <link href="/css/home.css" rel="stylesheet">
 
 <body>
 
