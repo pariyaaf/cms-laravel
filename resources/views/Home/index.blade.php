@@ -1,5 +1,7 @@
 @php
     use Illuminate\Support\Str;
+    use Illuminate\Support\Facades\Redis;
+
 @endphp
 
 <!-- Your Blade content here -->
@@ -34,7 +36,8 @@
                     </p>
                 </div>
                 <div class="ratings">
-                    <p class="pull-left"> تعداد بازدید{{$course->viewCount}}</p>
+                    <p class="pull-left"> تعداد بازدید {{Redis::get("views.{$course->id}.courses")}}</p>
+                    <p class="pull-right">{{$course->viewCount}} تعداد بازدید</p>
                 </div>
             </div>
         </div>
@@ -58,7 +61,9 @@
                         <p>{{Str::limit($article->description, 120)}}</p>
                     </div>
                     <div class="ratings">
-                        <p class="pull-right">{{$article->viewCount}} بازدید</p>
+                        <p class="pull-right">تعداد بازدید{{Redis::get("views.{$article->id}.articles")}} </p>
+                        <p class="pull-right">{{$article->viewCount}} تعداد بازدید</p>
+
                     </div>
                 </div>
             </div>
