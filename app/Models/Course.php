@@ -20,6 +20,11 @@ class Course extends Model
         'images' => 'array'
     ];
 
+    protected $hidden = [//  با دیدی و دسترسی مستقیم بر میگرده البته
+        'viewCount',
+        'commentCount',
+    ];
+
     public function sluggable(): array
     {
         return [
