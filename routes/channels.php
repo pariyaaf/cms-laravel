@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Broadcast;
 | used to check if an authenticated user can listen to the channel.
 |
 */
-
-Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+// this is for private
+Broadcast::channel('articels.{type}', function ($user, $type) {
+     if( $user->level == 'admin') {
+        return true;
+    } 
+    return false;
 });
