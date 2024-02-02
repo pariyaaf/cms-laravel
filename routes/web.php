@@ -27,6 +27,7 @@ use App\Models\User;
 use App\Events\UserActivation\UserActivation;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+use App\Events\articleEvent;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,15 +40,21 @@ use Illuminate\Support\Facades\Validator;
 |
 */
 
-Route::get('/', function () {
-    // $user = User::find(1);
-    // return event(new UserActivation($user));
-    // auth()->loginUsingId(7);
-    // alert()->error('Oops...', 'Something went wrong!')->footer('<a href="#">Why do I have this issue?</a>');
-    // return view('Admin.panel', compact('labels', 'values'));
-    // dd(Auth::user());
-    // return ('done');
-    return view('welcome');
+// Route::get('/', function () {
+//     // $user = User::find(1);
+//     // return event(new UserActivation($user));
+//     // auth()->loginUsingId(7);
+//     // alert()->error('Oops...', 'Something went wrong!')->footer('<a href="#">Why do I have this issue?</a>');
+//     // return view('Admin.panel', compact('labels', 'values'));
+//     // dd(Auth::user());
+//     // return ('done');
+//     return view('welcome');
+// });
+
+Route::get('/' , function (){
+    $user = User::find(2);
+   event(new ArticleEvent($user));
+   return 'done';
 });
 
 
