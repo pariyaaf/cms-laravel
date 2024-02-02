@@ -17,6 +17,7 @@
         "laravel/ui": "^4.3",
         "morilog/jalali": "^3.4",
         "nesbot/carbon": "^2.72",
+        "predis/predis": "^2.2",
         "pusher/pusher-php-server": "^7.2",
         "realrashid/sweet-alert": "^7.1"
     },
