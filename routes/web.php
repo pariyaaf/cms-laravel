@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\Auth\RegisteredUserController;
 // use App\Http\Controllers\Auth\PasswordResetLinkController;
 // use App\Http\Controllers\Auth\NewPasswordController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -149,3 +149,13 @@ Route::get('/getData' , function(){
     return $imagePath . $filename;
 });
 
+
+
+
+// main route for site
+route::get('/',[HomeController::class,'index']);
+route::get('/articles/{articleSlug}',[ArticleController::class,'single']);
+route::get('/courses/{courseSlug}',[CourseController::class,'single']);
+route::get('/comment',[HomeController::class,'comment']);
+// route::get('/articles',[ArticleController::class,'redirectToProvider']);
+// route::get('/courses',[CourseController::class,'redirectToProvider']);
