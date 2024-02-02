@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Course;
 use Carbon\Carbon;
+use  Illuminate\View\View;
+
 
 use Cache;
 
@@ -27,9 +29,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index() : View
     {
-        // cache()->pull('courses');
+        cache()->pull('courses');
+        cache()->pull('articles');
+
         if(cache()->has('articles')) {
             $articles = cache('articles');
         } else {
