@@ -52,9 +52,10 @@ use App\Events\articleEvent;
 // });
 
 Route::get('/' , function (){
-    $user = User::find(2);
-   event(new ArticleEvent($user));
-   return 'done';
+//     $user = User::find(2);
+//    event(new ArticleEvent($user));
+//    return 'done';
+return view('Home.index');
 });
 
 
