@@ -31,7 +31,7 @@ class Article extends Model
 
     public function path ()
     {
-        return "/article/$this->slug";
+        return "/articles/$this->slug";
 
     }
 
