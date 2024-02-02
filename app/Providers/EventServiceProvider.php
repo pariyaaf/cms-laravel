@@ -21,6 +21,7 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserActivation\UserActivation' => [
             'App\Listeners\UserActivation\SendMailNotification',
         ],
+        'App\Events\articleEvent' => []
     
     ];
 
