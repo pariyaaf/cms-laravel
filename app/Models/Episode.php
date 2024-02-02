@@ -29,7 +29,7 @@ class Episode extends Model
 
     public function path ()
     {
-        return "/course/{$this->course->slug}/epicode/{$this->episodeNumber}";
+        return "/courses/{$this->course->slug}/epicodes/{$this->episodeNumber}";
 
     }
     public function course()
