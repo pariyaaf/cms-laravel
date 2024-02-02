@@ -1,6 +1,9 @@
 <?php
 use App\Http\Controllers\Admin\PanelController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Home\CourseController as HomeCourseController;
+use App\Http\Controllers\Home\ArticleController as HomeArticleController;
+
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\EpisodeController;
 use App\Http\Controllers\Admin\TestController;
@@ -154,8 +157,8 @@ Route::get('/getData' , function(){
 
 // main route for site
 route::get('/',[HomeController::class,'index']);
-route::get('/articles/{articleSlug}',[ArticleController::class,'single']);
-route::get('/courses/{courseSlug}',[CourseController::class,'single']);
+route::get('/articles/{articleSlug}',[HomeArticleController::class,'single']);
+route::get('/courses/{courseSlug}',[HomeCourseController::class,'single']);
 route::get('/comment',[HomeController::class,'comment']);
 // route::get('/articles',[ArticleController::class,'redirectToProvider']);
 // route::get('/courses',[CourseController::class,'redirectToProvider']);
