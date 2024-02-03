@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 // use Laravel\Sanctum\HasApiTokens;
 use App\Models\Article;
+use App\Models\Comment;
 use App\Models\Course;
 use App\Models\ActivationCode;
 use Laravel\Passport\HasApiTokens;
@@ -78,6 +79,10 @@ class User extends Authenticatable
         return !! $role->intersect($this->roles)->count();
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
     public function isAdmin(){
         // $level = $this->level;
         

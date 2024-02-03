@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 // use Illuminate\Database\Eloquent\Relations\HasMany;
-
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use App\Models\Comment;
 
 class Article extends Model
 {
@@ -39,4 +40,9 @@ class Article extends Model
     // public function article () {
     //     return $this->hasMany(User::class);
     // }
+
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

@@ -8,6 +8,7 @@ use App\Models\Course;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Episode extends Model
 {
@@ -35,4 +36,11 @@ class Episode extends Model
     public function course()
     {
         return $this->belongsTo(Course::class);
-    }}
+    }
+
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
+}
