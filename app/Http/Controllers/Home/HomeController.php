@@ -8,6 +8,9 @@ use App\Models\Article;
 use App\Models\Course;
 use Carbon\Carbon;
 use  Illuminate\View\View;
+use SEO;
+use Artesaos\SEOTools\Facades\SEOTools;
+use Artesaos\SEOTools\Facades\SEOMeta;
 
 
 use Cache;
@@ -31,8 +34,12 @@ class HomeController extends Controller
      */
     public function index() : View
     {
-        cache()->pull('courses');
-        cache()->pull('articles');
+        // cache()->pull('courses');
+        // cache()->pull('articles');
+
+        SEOMeta::setTitle(' سایت پریا');
+        SEOMeta::setDescription('وب سایت آموزشی');
+
 
         if(cache()->has('articles')) {
             $articles = cache('articles');
@@ -47,6 +54,7 @@ class HomeController extends Controller
             $courses = Course::latest()->take(4)->get();
             cache(['courses'=> $courses, Carbon::now()->addDays(1)]);
         }
+
 
         return view('Home.index', compact('articles','courses'));
     }

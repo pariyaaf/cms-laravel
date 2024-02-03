@@ -9,8 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>وبسایت راکت</title>
+    {!! SEO::generate() !!}
 
     <!-- Bootstrap Core CSS -->
     <link href="/css/home.css" rel="stylesheet">
