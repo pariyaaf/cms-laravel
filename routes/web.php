@@ -159,6 +159,6 @@ Route::get('/getData' , function(){
 route::get('/',[HomeController::class,'index']);
 route::get('/articles/{articleSlug}',[HomeArticleController::class,'single']);
 route::get('/courses/{courseSlug}',[HomeCourseController::class,'single']);
-route::get('/comment',[HomeController::class,'comment']);
+route::post('/comment',[HomeController::class,'comment']);
 // route::get('/articles',[ArticleController::class,'redirectToProvider']);
 // route::get('/courses',[CourseController::class,'redirectToProvider']);
