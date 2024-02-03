@@ -58,4 +58,21 @@ class HomeController extends Controller
 
         return view('Home.index', compact('articles','courses'));
     }
+
+    public function comment(Request $request) {
+
+        $this->validate($request, [
+                    'comment' => 'required|min:5'
+        ]);
+
+
+        auth()->user()->comments()->create($request->all());
+        return back();
+
+        // Comment::create(array_merge([
+        //     'user_id' => auth()->id,
+        //     $request->all()
+        // ]));
+
+    }
 }
