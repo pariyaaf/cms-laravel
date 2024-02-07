@@ -17,7 +17,7 @@ class Comment extends Model
         'comment',
         'commentable_id',
         'commentable_type',
-        'approve'
+        'approved'
     ];
     public function commentable(): MorphTo
     {
