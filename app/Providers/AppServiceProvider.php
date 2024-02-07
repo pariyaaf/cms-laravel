@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use GuzzleHttp\Client;
+use App\Models\Comment;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -39,6 +41,18 @@ class AppServiceProvider extends ServiceProvider
             }
             return false;
 
+        });
+
+        view()->composer('Admin.section.header', function ($view) {
+            $unsuccessful = Comment::where('approved', 0)->count();
+            
+            $view->with('unsuccessfulCount', $unsuccessful);
+        });
+
+        view()->composer('Admin.section.header', function ($view) {
+            $successful = Comment::where('approved', 1)->count();
+            
+            $view->with('successfulCount', $successful);
         });
     }
 }
