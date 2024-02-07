@@ -42,8 +42,8 @@
                 <li><a href="">پرداختی های ناموفق <span class="badge">0</span></a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                    <li><a href="">همه نظرات</a></li>
-                    <li><a href="">نظرات تایید نشده <span class="badge">0</span></a></li>
+                    <li><a href="/admin/comments">همه نظرات<span class="badge">{{ $successfulCount }}</span></a></li>
+                    <li><a href="/admin/comments/unsuccessful"> نظرات تایید نشده<span class="badge">{{ $unsuccessfulCount }}</span></a></li>
                 {{--<li><a href="">Another nav item</a></li>--}}
             </ul>
         </div>
