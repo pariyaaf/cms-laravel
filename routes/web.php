@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\LevelManageController;
+use App\Http\Controllers\Admin\CommentController;
+
 use App\Http\Controllers\UserAController;
 
 use Illuminate\Support\Facades\Route;
@@ -79,6 +81,9 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware' => ['auth:web', 'C
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
     Route::resource('levels', LevelManageController::class);
+    Route::get('comments/unsuccessful', [CommentController::class, 'unsuccessful']);
+
+    Route::resource('comments', CommentController::class);
 
 
     Route::group(['prefix' => 'users', 'as' => 'users.'], function () {//, 'middleware' => ['can:manage_users']]
