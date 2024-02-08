@@ -64,9 +64,7 @@ class CommentController extends Controller
 
         // event()
         alert()->success('عملیات مورد نظر با موفقیت انجام شد','تایید شد');
-        return back();
-
-        
+        return back();  
     }
 
     /**
