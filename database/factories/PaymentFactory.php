@@ -24,14 +24,10 @@ $endDate = Carbon::now();
         return [
             'user_id' => rand(1,2),
             'resnumber' => rand(100000000,90000000),
-            // 'course_id' => now(),
+            'course_id' => fake()->randomElement([1,3,4, 'vip']),
             'price' => rand(1000,1000000),
             'payment' => rand(0,1),
             'created_at' =>  $randomDate = Carbon::createFromTimestamp(mt_rand($startDate->timestamp, $endDate->timestamp))
-
-
-
-
             // $table->string('level')->default('user');
         ];
     }
