@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Support\Str;
 use App\Models\episode;
+use App\Models\Payment;
+
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Course extends Model
@@ -59,5 +61,10 @@ class Course extends Model
     public function comments(): MorphMany
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
 }
