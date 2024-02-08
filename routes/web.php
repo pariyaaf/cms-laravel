@@ -1,9 +1,6 @@
 <?php
 use App\Http\Controllers\Admin\PanelController;
 use App\Http\Controllers\Admin\ArticleController;
-use App\Http\Controllers\Home\CourseController as HomeCourseController;
-use App\Http\Controllers\Home\ArticleController as HomeArticleController;
-
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\EpisodeController;
 use App\Http\Controllers\Admin\TestController;
@@ -12,27 +9,34 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\LevelManageController;
 use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\PaymentController;
 
 use App\Http\Controllers\UserAController;
 
-use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\Auth\AuthenticatedSessionController;
 // use App\Http\Controllers\Auth\RegisteredUserController;
 // use App\Http\Controllers\Auth\PasswordResetLinkController;
 // use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Home\CourseController as HomeCourseController;
+use App\Http\Controllers\Home\ArticleController as HomeArticleController;
+
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ConfirmPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
+
+use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use App\Events\UserActivation\UserActivation;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+
+use App\Events\UserActivation\UserActivation;
 use App\Events\articleEvent;
+use App\Models\User;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -81,11 +85,14 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware' => ['auth:web', 'C
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
     Route::resource('levels', LevelManageController::class);
+    //for comments
     Route::get('comments/unsuccessful', [CommentController::class, 'unsuccessful']);
-
     Route::resource('comments', CommentController::class);
 
-
+    //for payments
+    Route::get('payments/unsuccessful', [PaymentController::class, 'unsuccessful']);
+    Route::resource('payments', PaymentController::class);
+    
     Route::group(['prefix' => 'users', 'as' => 'users.'], function () {//, 'middleware' => ['can:manage_users']]
         Route::get('/', [UserController::class, 'index']);
         Route::delete('{id}/destroy', [UserController::class, 'destroy'])->name('destroy');
