@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('resnumber');// to check payment
-            $table->integer('course_id')->default(0);
+            $table->string('course_id')->default('vip');
             $table->string('price');// check price
             $table->boolean('payment')->default(false);// success or not
             $table->timestamps();
