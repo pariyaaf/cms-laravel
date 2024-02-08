@@ -10,6 +10,8 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Article;
 use App\Models\Comment;
 use App\Models\Course;
+use App\Models\Payment;
+use App\Models\Learning;
 use App\Models\ActivationCode;
 use Laravel\Passport\HasApiTokens;
 
@@ -83,6 +85,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+
     public function isAdmin(){
         // $level = $this->level;
         
@@ -98,5 +101,12 @@ class User extends Authenticatable
         return $this->hasMany(activationCode::class);
     }
 
+    public function payments() {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function checkLearning($course) {
+        return Learning::where('course_id', $course->id)->where('user_id', $this->id)->exists(); 
+    }
     
 }
