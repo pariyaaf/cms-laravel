@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use GuzzleHttp\Client;
 use App\Models\Comment;
+use App\Models\Payment;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -43,16 +45,18 @@ class AppServiceProvider extends ServiceProvider
 
         });
 
-        view()->composer('Admin.section.header', function ($view) {
+        view()->composer('Admin.section.header' , function($view) {
             $unsuccessful = Comment::where('approved', 0)->count();
-            
-            $view->with('unsuccessfulCount', $unsuccessful);
-        });
-
-        view()->composer('Admin.section.header', function ($view) {
             $successful = Comment::where('approved', 1)->count();
-            
-            $view->with('successfulCount', $successful);
+            $unsuccessfulPayment = Payment::where('payment', 0)->count();
+            $successfulPayment = Payment::where('payment', 1)->count();
+            $view->with([
+                'unsuccessful' => $unsuccessful,
+                'successful' => $successful,
+                'unsuccessfulPayment' => $unsuccessfulPayment,
+                'successfulPayment' => $successfulPayment,
+                ]);
         });
     }
+
 }
