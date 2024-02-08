@@ -40,10 +40,13 @@
                 <li><a href="/admin/users">کاربران <span class="badge">0</span></a></li>
                 <li><a href="">پرداختی های موفق <span class="badge">0</span></a></li>
                 <li><a href="">پرداختی های ناموفق <span class="badge">0</span></a></li>
+                <li><a href="/admin/payments">پرداختی های موفق<span class="badge">{{ $successfulPayment }}</span></a></li>
+                <li><a href="/admin/payments/unsuccessful">  پرداختی های ناموفق <span class="badge">{{ $unsuccessfulPayment }}</span></a></li>
+
             </ul>
             <ul class="nav nav-sidebar">
-                    <li><a href="/admin/comments">همه نظرات<span class="badge">{{ $successfulCount }}</span></a></li>
-                    <li><a href="/admin/comments/unsuccessful"> نظرات تایید نشده<span class="badge">{{ $unsuccessfulCount }}</span></a></li>
+                    <li><a href="/admin/comments">همه نظرات<span class="badge">{{ $successful }}</span></a></li>
+                    <li><a href="/admin/comments/unsuccessful"> نظرات تایید نشده<span class="badge">{{ $unsuccessful }}</span></a></li>
                 {{--<li><a href="">Another nav item</a></li>--}}
             </ul>
         </div>
