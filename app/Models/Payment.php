@@ -5,9 +5,17 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Payment extends Model
 {
+    protected $fillable = [
+        'payment',
+        'user_id',
+        'course_id',
+        'resnumber',
+        'price'
+    ];
     use HasFactory;
 
     public static function spannignPayment($month=6, $payment=1) {
@@ -17,5 +25,10 @@ class Payment extends Model
             ->groupBy(DB::raw('month'))
             ->orderBy('month', 'desc');
 
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
