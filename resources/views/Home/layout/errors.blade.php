@@ -9,3 +9,5 @@
                     </ul>
                  </div>
                  @endif
+
+                 @include('sweetalert::alert')
