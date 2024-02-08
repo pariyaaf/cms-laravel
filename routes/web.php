@@ -100,6 +100,14 @@ Route::group(['prefix'=>'admin', 'as'=>'admin.', 'middleware' => ['auth:web', 'C
 
 });
 
+Route::group(['middleware'=>'auth:web'], function () {
+    //چون با پست ارسال میکنیم خود ابجکت رو به صورت پست میفرستیم
+    Route::post('/course/payment',[HomeCourseController::class, 'payment'])->name('course.payment');
+    //به صورت گت چون خودش دیفالت گت میگیره
+    //بستگی به درگاه پرداخت داره
+    Route::get('/course/payment/checker', [HomeCourseController::class, 'checker'] );
+});
+
 Route::group(['namespace' => "App\Http\Controllers\Auth"], function () {
     // Authentication Routes...
     Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
